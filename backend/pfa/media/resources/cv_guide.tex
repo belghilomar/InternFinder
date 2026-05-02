@@ -1,0 +1,226 @@
+\documentclass[11pt,a4paper]{article}
+
+% ================== PACKAGES ==================
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+
+% ================== COLORS ==================
+\definecolor{primary}{RGB}{0, 51, 102}
+\definecolor{secondary}{RGB}{90, 90, 90}
+
+% ================== HYPERLINK SETUP ==================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary
+}
+
+% ================== SECTION STYLE ==================
+\titleformat{\section}
+{\large\bfseries\color{primary}}
+{}{0em}{}
+
+\titleformat{\subsection}
+{\normalsize\bfseries\color{secondary}}
+{}{0em}{}
+
+% ================== HEADER ==================
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textcolor{secondary}{Standard CV Template – Student Guide}}
+\lhead{\textcolor{secondary}{Professional Document}}
+\rfoot{\thepage}
+
+% ================== SPACING ==================
+\setstretch{1.2}
+\setlist[itemize]{noitemsep, topsep=4pt}
+
+% ================== DOCUMENT ==================
+\begin{document}
+
+% ================== TITLE PAGE ==================
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    
+    {\Huge \textbf{\textcolor{primary}{Standard CV Template}} \par}
+    \vspace{0.5cm}
+    {\Large \textcolor{secondary}{Student Guide} \par}
+    
+    \vspace{2cm}
+    
+    {\large A professional guide to help students build high-quality, modern CVs for internships, jobs, and academic opportunities.}
+    
+    \vfill
+    
+    {\large \today}
+    
+\end{titlepage}
+
+% ================== INTRODUCTION ==================
+\section{Introduction}
+
+A Curriculum Vitae (CV) is a key document that represents your academic background, skills, and experiences. For students, it is often the first step toward securing internships, part-time jobs, or admission into competitive programs.
+
+A well-structured CV helps recruiters quickly understand your profile and evaluate your potential. This guide provides practical advice and a complete template to help you build a professional and effective CV.
+
+% ================== GENERAL GUIDELINES ==================
+\section{General Guidelines}
+
+\begin{itemize}
+    \item Keep your CV concise (1 page for students, maximum 2 pages).
+    \item Use a clean and professional font (e.g., Latin Modern, Arial, Helvetica).
+    \item Maintain consistent formatting (spacing, alignment, bullet points).
+    \item Use clear section titles.
+    \item Avoid unnecessary graphics or excessive colors.
+    \item Save your CV as a PDF.
+\end{itemize}
+
+% ================== CV STRUCTURE ==================
+\section{CV Sections Explanation}
+
+\subsection{Personal Information}
+\begin{itemize}
+    \item Full Name
+    \item Phone Number
+    \item Professional Email Address
+    \item LinkedIn or Portfolio (optional but recommended)
+\end{itemize}
+
+\subsection{Education}
+\begin{itemize}
+    \item Degree and field of study
+    \item Institution name
+    \item Dates
+    \item Relevant coursework (optional)
+\end{itemize}
+
+\subsection{Projects}
+\begin{itemize}
+    \item Academic or personal projects
+    \item Technologies used
+    \item Key achievements or outcomes
+\end{itemize}
+
+\subsection{Skills}
+\begin{itemize}
+    \item Technical skills (programming, tools, software)
+    \item Soft skills (communication, teamwork, problem-solving)
+\end{itemize}
+
+\subsection{Experience}
+\begin{itemize}
+    \item Internships
+    \item Part-time jobs
+    \item Volunteer work
+\end{itemize}
+
+\subsection{Certifications / Training}
+\begin{itemize}
+    \item Online courses
+    \item Professional certifications
+\end{itemize}
+
+\subsection{Languages}
+\begin{itemize}
+    \item Languages spoken with proficiency level
+\end{itemize}
+
+\subsection{Interests (Optional)}
+\begin{itemize}
+    \item Hobbies or interests that reflect your personality or skills
+\end{itemize}
+
+% ================== OPTIMIZATION ==================
+\section{Tips for Optimization}
+
+\begin{itemize}
+    \item Use keywords relevant to the job description.
+    \item Make your CV ATS-friendly (simple format, no tables/images).
+    \item Customize your CV for each application.
+    \item Highlight measurable achievements (e.g., improved performance by 20\%).
+    \item Use action verbs (Developed, Designed, Implemented).
+\end{itemize}
+
+% ================== MISTAKES ==================
+\section{Common Mistakes to Avoid}
+
+\begin{itemize}
+    \item Spelling and grammar errors
+    \item Too much text or irrelevant information
+    \item Unprofessional email address
+    \item Lack of structure or consistency
+    \item Copying generic templates without personalization
+\end{itemize}
+
+% ================== SAMPLE CV ==================
+\section{Example of a Student CV}
+
+\subsection*{\textcolor{primary}{John Doe}}
+\textbf{Phone:} +216 00 000 000 \\
+\textbf{Email:} john.doe@email.com \\
+\textbf{LinkedIn:} \url{https://linkedin.com/in/johndoe}
+
+\vspace{0.3cm}
+
+\subsection*{Education}
+\textbf{Engineering Preparatory Cycle} \\
+XYZ University \hfill 2023 -- Present \\
+Relevant Coursework: Mathematics, Physics, Programming
+
+\vspace{0.3cm}
+
+\subsection*{Projects}
+\textbf{Mini Web Application (React + Node.js)} \\
+\begin{itemize}
+    \item Developed a responsive web application for task management
+    \item Implemented REST API and database integration
+\end{itemize}
+
+\textbf{IoT Smart Home System} \\
+\begin{itemize}
+    \item Designed a system using Arduino and sensors
+    \item Automated lighting and temperature control
+\end{itemize}
+
+\vspace{0.3cm}
+
+\subsection*{Skills}
+\textbf{Technical:} Python, C, JavaScript, Git, Linux \\
+\textbf{Soft Skills:} Teamwork, Communication, Problem-solving
+
+\vspace{0.3cm}
+
+\subsection*{Experience}
+\textbf{Intern – Tech Company} \hfill Summer 2025 \\
+\begin{itemize}
+    \item Assisted in software development tasks
+    \item Collaborated with a team on debugging and testing
+\end{itemize}
+
+\vspace{0.3cm}
+
+\subsection*{Certifications}
+\begin{itemize}
+    \item Introduction to Machine Learning – Online Course
+    \item Web Development Bootcamp
+\end{itemize}
+
+\vspace{0.3cm}
+
+\subsection*{Languages}
+English (Fluent), French (Intermediate), Arabic (Native)
+
+\vspace{0.3cm}
+
+\subsection*{Interests}
+Robotics, Programming, Artificial Intelligence, Football
+
+% ================== END ==================
+\end{document}

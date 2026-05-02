@@ -1,0 +1,65 @@
+{% extends 'internships/base.html' %}
+
+{% block title %}Toutes les offres{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>
+            <i class="bi bi-database"></i> 
+            Toutes les offres en base de données
+        </h2>
+        <p class="lead">{{ total_count }} offres au total</p>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        {% if offers %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Titre</th>
+                            <th>Société</th>
+                            <th>Localisation</th>
+                            <th>Mot-clé</th>
+                            <th>Date trouvée</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for offer in offers %}
+                        <tr>
+                            <td>{{ offer.title|truncatechars:50 }}</td>
+                            <td>{{ offer.company|default:"-" }}</td>
+                            <td>{{ offer.location|default:"-" }}</td>
+                            <td><span class="badge bg-info">{{ offer.search_keyword }}</span></td>
+                            <td>{{ offer.created_at|date:"d/m/Y H:i" }}</td>
+                            <td>
+                                <a href="{% url 'offer_detail' offer.id %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a href="{{ offer.url }}" target="_blank" class="btn btn-sm btn-outline-secondary">
+                                    <i class="bi bi-box-arrow-up-right"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-warning text-center p-5">
+                <i class="bi bi-database-slash" style="font-size: 3rem;"></i>
+                <h4 class="mt-3">Aucune offre en base de données</h4>
+                <p>Effectuez une recherche pour commencer à collecter des offres.</p>
+                <a href="{% url 'index' %}" class="btn btn-primary mt-3">
+                    <i class="bi bi-search"></i> Rechercher des offres
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

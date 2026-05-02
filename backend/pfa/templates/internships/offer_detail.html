@@ -1,0 +1,75 @@
+{% extends 'internships/base.html' %}
+
+{% block title %}{{ offer.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'results' offer.search_keyword 'Tunisie' %}">Résultats</a></li>
+                <li class="breadcrumb-item active">Détail de l'offre</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">{{ offer.title }}</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <p><i class="bi bi-building"></i> <strong>Société:</strong> {{ offer.company|default:"Non spécifié" }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><i class="bi bi-geo-alt"></i> <strong>Localisation:</strong> {{ offer.location|default:"Non spécifié" }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><i class="bi bi-calendar"></i> <strong>Publié:</strong> {{ offer.date_posted|default:"Date non spécifiée" }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><i class="bi bi-tag"></i> <strong>Mot-clé:</strong> {{ offer.search_keyword }}</p>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <h5>Description</h5>
+                <p>{{ offer.description|default:"Aucune description disponible." }}</p>
+                
+                <hr>
+                
+                <div class="d-grid gap-2">
+                    <a href="{{ offer.url }}" target="_blank" class="btn btn-primary">
+                        <i class="bi bi-box-arrow-up-right"></i> Voir l'offre originale sur OptionCarrière
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                Offre trouvée le {{ offer.created_at|date:"d/m/Y à H:i" }}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <i class="bi bi-share"></i> Partager
+            </div>
+            <div class="card-body">
+                <p>Référence: #{{ offer.id }}</p>
+                <div class="d-grid gap-2">
+                    <a href="{% url 'index' %}" class="btn btn-outline-primary">
+                        <i class="bi bi-search"></i> Nouvelle recherche
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

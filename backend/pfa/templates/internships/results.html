@@ -1,0 +1,140 @@
+{% extends 'internships/base.html' %}
+
+{% block title %}Résultats pour {{ keyword }} - {{ location }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Accueil</a></li>
+                <li class="breadcrumb-item active">Résultats</li>
+            </ol>
+        </nav>
+        
+        <h2>
+            <i class="bi bi-search"></i> 
+            Résultats pour "{{ keyword }}" 
+            <small class="text-muted">à {{ location }}</small>
+        </h2>
+        
+        {% if is_scraping %}
+        <div class="alert alert-info d-flex align-items-center mt-3" id="scraping-banner">
+            <div class="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
+            <span>🕷️ Recherche en cours sur <strong>9 sources</strong> (Keejob, TanitJobs, Indeed, Stage.tn...)
+            — les résultats apparaîtront automatiquement.</span>
+        </div>
+        {% endif %}
+        
+        {% if count > 0 %}
+        <p class="lead">{{ count }} offres trouvées</p>
+        {% endif %}
+        
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        {% if count == 0 and not is_scraping %}
+        <div class="alert alert-info text-center p-5">
+            <i class="bi bi-emoji-frown" style="font-size: 3rem;"></i>
+            <h4 class="mt-3">Aucune offre trouvée pour le moment</h4>
+            <p>Essayez de relancer la recherche ou utilisez d'autres mots-clés.</p>
+            <a href="{% url 'index' %}" class="btn btn-primary mt-3">
+                <i class="bi bi-arrow-left"></i> Nouvelle recherche
+            </a>
+        </div>
+        {% elif count == 0 and is_scraping %}
+        <div class="alert alert-warning text-center p-5">
+            <div class="spinner-border text-primary mb-3" style="width: 3rem; height: 3rem;" role="status"></div>
+            <h4>Recherche en cours...</h4>
+            <p>Les résultats apparaîtront ici automatiquement. Patientez quelques secondes.</p>
+        </div>
+        {% else %}
+            {% for offer in offers %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'offer_detail' offer.id %}" class="text-decoration-none text-primary">
+                            {{ offer.title }}
+                        </a>
+                    </h5>
+                    
+                    <div class="row mt-2">
+                        {% if offer.company %}
+                        <div class="col-md-6 mb-1">
+                            <i class="bi bi-building"></i> 
+                            <strong>Société:</strong> {{ offer.company }}
+                        </div>
+                        {% endif %}
+                        
+                        {% if offer.location %}
+                        <div class="col-md-6 mb-1">
+                            <i class="bi bi-geo-alt"></i> 
+                            <strong>Localisation:</strong> {{ offer.location }}
+                        </div>
+                        {% endif %}
+                        
+                        {% if offer.date_posted %}
+                        <div class="col-md-6 mb-1">
+                            <i class="bi bi-calendar"></i> 
+                            <strong>Publié:</strong> {{ offer.date_posted }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="mt-3">
+                        <a href="{{ offer.url }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-box-arrow-up-right"></i> Voir l'offre originale
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <i class="bi bi-funnel"></i> Actions
+            </div>
+            <div class="card-body">
+                <a href="{% url 'index' %}" class="btn btn-outline-primary w-100 mb-2">
+                    <i class="bi bi-search"></i> Nouvelle recherche
+                </a>
+                {% if count > 0 %}
+                <a href="{% url 'export_csv' keyword %}" class="btn btn-outline-success w-100">
+                    <i class="bi bi-download"></i> Exporter en CSV
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header bg-info text-white">
+                <i class="bi bi-tags"></i> Recherches populaires
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <a href="{% url 'results' 'developpeur' 'Tunisie' %}" class="list-group-item list-group-item-action">Développeur</a>
+                    <a href="{% url 'results' 'stage' 'Tunis' %}" class="list-group-item list-group-item-action">Stage Tunis</a>
+                    <a href="{% url 'results' 'marketing' 'Tunisie' %}" class="list-group-item list-group-item-action">Marketing</a>
+                    <a href="{% url 'results' 'commercial' 'Tunisie' %}" class="list-group-item list-group-item-action">Commercial</a>
+                    <a href="{% url 'results' 'ingenieur' 'Tunisie' %}" class="list-group-item list-group-item-action">Ingénieur</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if is_scraping %}
+<script>
+    // Auto-refresh every 5 seconds while scraping is active
+    setTimeout(function() {
+        window.location.reload();
+    }, 5000);
+</script>
+{% endif %}
+{% endblock %}

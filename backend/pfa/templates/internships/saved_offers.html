@@ -1,0 +1,47 @@
+{% extends "internships/base.html" %}
+
+{% block title %}Offres Sauvegardées - TrouveTonStage{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2><i class="bi bi-bookmark-fill"></i> Toutes les Offres ({{ offers|length }})</h2>
+        <hr>
+        
+        {% if offers %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Titre</th>
+                        <th>Société</th>
+                        <th>Localisation</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for offer in offers %}
+                    <tr>
+                        <td>{{ offer.title }}</td>
+                        <td>{{ offer.company|default:"—" }}</td>
+                        <td>{{ offer.location|default:"—" }}</td>
+                        <td>{{ offer.date_posted|default:"—" }}</td>
+                        <td>
+                            <a href="{{ offer.url }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-box-arrow-up-right"></i> Voir
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i> Aucune offre trouvée. Lancez une recherche pour découvrir des stages !
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
