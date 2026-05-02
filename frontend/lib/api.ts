@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 export interface Internship {
   id: number;
@@ -51,7 +51,7 @@ export async function searchInternships(keyword: string, location: string = 'Tun
   return response.json();
 }
 
-export async function getScrapingStatus(keyword: string, location: string = 'Tunisie'): Promise<{is_scraping: boolean, count: number}> {
+export async function getScrapingStatus(keyword: string, location: string = 'Tunisie'): Promise<{ is_scraping: boolean, count: number }> {
   const response = await fetch(`${API_BASE_URL}/status/?keyword=${encodeURIComponent(keyword)}&location=${encodeURIComponent(location)}`);
   if (!response.ok) throw new Error('Failed to fetch status');
   return response.json();
